@@ -16,7 +16,7 @@ const Navbar = () => {
             <Link to="/auctions" className="hover:text-green-200">Auctions</Link>
             <Link to="/dashboard" className="hover:text-green-100">Dashboard</Link>
             <Link to="/create" className="hover:text-green-200">Create Auction</Link>
-            <Link to="/history" className="hover:text-green-200">History</Link>
+            <Link to="/auction/:id" className="hover:text-green-200">History</Link>
             <Link to="/login" className="hover:text-green-200">Login</Link>
             <Link to="/register" className="hover:text-green-200">Register</Link>
           </div>

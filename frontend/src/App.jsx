@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import CreateAuction from './pages/CreateAuction';
+import AuctionList from './pages/AuctionList';
+import AuctionDetail from './pages/AuctionDetail';
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
             <Route path="/register" element={<Register/>} />
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="/create" element={<CreateAuction />} />
+            <Route path="/auctions" element={<AuctionList/>} />
+            <Route path="/auction/:id" element={<AuctionDetail/>} />
           </Routes>
         </main>
 
