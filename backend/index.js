@@ -4,7 +4,10 @@ import colors from 'colors'
 import dotenv from 'dotenv'
 import connectDB from './db/index.js';
 import cookieParser from 'cookie-parser'
-// import userRoutes from './routes/User.routes.js'
+import path from 'path'
+import authRoutes from './routes/User.routes.js'
+import auctionRoutes from './routes/Auction.routes.js'
+import bidRoutes from './routes/Bid.routes.js'
 // import productRoutes from './routes/Product.routes.js'
 // import cartRoutes from './routes/Cart.routes.js'
 // import checkoutRoutes from './routes/Checkout.routes.js'
@@ -23,6 +26,7 @@ connectDB()
 //Middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+// app.use('/uploads', express.static(path.join(path.resolve(), 'uploads')));
 app.use(cookieParser())
 const corsOption = {
       origin: 'http://localhost:5173',
@@ -31,18 +35,9 @@ const corsOption = {
 app.use(cors(corsOption))
 
 //Routes
-// app.use('/api/v1/users',userRoutes)
-// app.use('/api/v1/products',productRoutes)
-// app.use('/api/v1/cart',cartRoutes)
-// app.use('api/v1/checkout',checkoutRoutes)
-// app.use('api/v1/orders',orderRoutes)
-// app.use('api/v1/upload',uploadRoutes)
-// app.use('api/v1/subscriber',subscriberRoutes)
-
-// //Admin Routes
-// app.use('api/v1/admin/users',adminRoutes)
-// app.use('api/v1/admin/products',productAdminRoutes)
-// app.use('api/v1/admin/orders',adminOrderRoutes)
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/auctions', auctionRoutes);
+app.use('/api/v1/bids', bidRoutes);
 
 app.listen(port,() => {
       console.log(`App running on port: ${port}`.bgCyan.white);

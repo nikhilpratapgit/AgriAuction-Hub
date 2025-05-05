@@ -9,6 +9,7 @@ import Dashboard from './pages/Dashboard';
 import CreateAuction from './pages/CreateAuction';
 import AuctionList from './pages/AuctionList';
 import AuctionDetail from './pages/AuctionDetail';
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
       <div className="min-h-screen flex flex-col">
         {/* Navbar */}
         <Navbar />
-
+        <Toaster position="top-right" reverseOrder={false} />
         {/* Main content */}
         <main className="flex-grow">
           <Routes>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const CreateAuction = () => {
   const [formData, setFormData] = useState({
@@ -9,17 +10,45 @@ const CreateAuction = () => {
     endTime: "",
   });
 
+  const [image, setImage] = useState(null);
+
   const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+//   const handleImageChange = (e) => {
+//     setImage(e.target.files[0]);
+//   };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: send formData to backend
-    console.log("Auction Created:", formData);
+
+    const token = localStorage.getItem("token"); // Get token from storage
+    console.log(token)
+
+    const auctionData = new FormData();
+    auctionData.append("crop", formData.crop);
+    auctionData.append("description", formData.description);
+    auctionData.append("basePrice", formData.basePrice);
+    auctionData.append("quantity", formData.quantity);
+    auctionData.append("endTime", formData.endTime);
+    // if (image) auctionData.append("image", image);
+
+    try {
+        console.log(token)
+      const res = await axios.post("http://localhost:8000/api/v1/auctions", auctionData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+           Authorization: `Bearer ${token}`, 
+        }
+      });
+      alert("Auction created successfully!");
+      console.log(res.data);
+    } catch (err) {
+      console.error("Error creating auction:", err);
+      alert("Failed to create auction.");
+    }
   };
 
   return (
@@ -81,7 +110,7 @@ const CreateAuction = () => {
             />
           </div>
 
-          {/* Auction End Time */}
+          {/* End Time */}
           <div>
             <label className="block text-sm font-semibold text-gray-700">Auction End Time</label>
             <input
@@ -94,7 +123,18 @@ const CreateAuction = () => {
             />
           </div>
 
-          {/* Submit */}
+          {/* Image Upload */}
+          {/* <div>
+            <label className="block text-sm font-semibold text-gray-700">Upload Crop Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="mt-1 w-full"
+            />
+          </div>  */}
+
+          {/* Submit Button */}
           <div className="pt-4">
             <button
               type="submit"
