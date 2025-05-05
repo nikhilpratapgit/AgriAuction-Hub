@@ -8,15 +8,7 @@ import path from 'path'
 import authRoutes from './routes/User.routes.js'
 import auctionRoutes from './routes/Auction.routes.js'
 import bidRoutes from './routes/Bid.routes.js'
-// import productRoutes from './routes/Product.routes.js'
-// import cartRoutes from './routes/Cart.routes.js'
-// import checkoutRoutes from './routes/Checkout.routes.js'
-// import orderRoutes from './routes/Order.routes.js'
-// import uploadRoutes from './routes/Upload.routes.js'
-// import subscriberRoutes from './routes/Subscriber.routes.js'
-// import adminRoutes from './routes/Admin.routes.js'
-// import productAdminRoutes from './routes/ProductAdmin.routes.js'
-// import adminOrderRoutes from './routes/AdminOrder.routes.js'
+
 
 dotenv.config()
 const port = process.env.PORT || 5000
