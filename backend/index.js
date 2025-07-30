@@ -52,7 +52,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Routes
+//Routes 
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/auctions', auctionRoutes);
 app.use('/api/v1/bids', bidRoutes);

@@ -1,7 +1,7 @@
 import { Auction } from "../models/Auction.models.js";
 import { Bid } from "../models/Bid.models.js";
 
-
+//create bid controller
 const createBid = async (req, res) => {
   try {
     const { auctionId, amount } = req.body;

@@ -2,11 +2,11 @@ import express from "express";
 import passport from "passport";
 
 const router = express.Router();
-
+// Google OAuth routes
 router.get("/google", passport.authenticate("google", {
   scope: ["profile", "email"]
 }));
-
+// Callback route for Google authentication
 router.get("/google/callback", passport.authenticate("google", {
   failureRedirect: "/login",
   session: true

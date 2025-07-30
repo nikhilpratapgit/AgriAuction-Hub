@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-
+// This module is used to send emails using Gmail's SMTP server.
 const sendEmail = async (to, subject, html) => {    
     try {
         const transporter = nodemailer.createTransport({

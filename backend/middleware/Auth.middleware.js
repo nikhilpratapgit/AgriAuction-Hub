@@ -35,12 +35,12 @@ export const isAuthenticated = async (req, res, next) => {
     }
 }
 
-export const isAdmin = () =>{
-    if(req.user.userType == 'admin'){
-        next();
-    }
-    res.redirect('/login')
-}
+// export const isAdmin = () =>{
+//     if(req.user.userType == 'admin'){
+//         next();
+//     }
+//     res.redirect('/login')
+// }
 
 // Optional: Role-based access
 export const authorizeRoles = (...roles) => {

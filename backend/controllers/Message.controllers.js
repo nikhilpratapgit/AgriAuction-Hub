@@ -1,6 +1,6 @@
 import { Message } from "../models/Message.models.js";
 
-
+// send message
 const sendMessage = async (req, res) => {
   const { text, auctionId } = req.body;
   const message = await Message.create({
@@ -10,7 +10,7 @@ const sendMessage = async (req, res) => {
   });
   res.status(201).json(message);
 };
-
+// get messages
 const getMessages = async (req, res) => {
   const messages = await Message.find({ auction: req.params.auctionId })
     .populate("user", "username")

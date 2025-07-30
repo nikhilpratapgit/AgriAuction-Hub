@@ -5,7 +5,7 @@ import { isAdmin, isAuthenticated } from '../middleware/Auth.middleware.js';
 import upload from '../middleware/Multer.js';
 
 const router = express.Router();
-
+// Auction routes
 router.post('/',isAuthenticated,upload.single('image'), createAuction);
 router.get('/get',getAllAuctions);
 router.put('/:id/close', isAuthenticated, closeAuction);

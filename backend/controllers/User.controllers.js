@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models/User.models.js';
 import sendEmail from '../utils/email.js';
 
-//Register user
+//Register user controller 
 const register = async (req, res) => {
       try {
             const { username, email, password, role } = req.body;
@@ -47,7 +47,7 @@ const register = async (req, res) => {
       }
 }
 
-// Resend verification email
+// Resend verification email controller
 const resendVerificationEmail = async (req, res) => {
       try {
             const { email } = req.body;

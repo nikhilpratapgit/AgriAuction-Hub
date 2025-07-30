@@ -4,7 +4,8 @@ import { isAuthenticated } from '../middleware/Auth.middleware.js';
 
 
 const router = Router();
-
+// User authentication routes
+// Register, login, logout, get user profile, update profile, verify email, resend verification
 router.post('/register', register);
 router.post('/login', login);
 router.post('/logout', logout);

@@ -5,7 +5,7 @@ const storage = multer.diskStorage({
             callback(null,file.originalname)
       }
 })
-
+// Configure multer to use the storage settings
 const upload = multer({storage})
 
 export default upload

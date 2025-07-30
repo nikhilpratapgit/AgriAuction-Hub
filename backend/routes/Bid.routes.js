@@ -4,7 +4,7 @@ import { isAuthenticated } from '../middleware/Auth.middleware.js';
 
 
 const router = express.Router();
-
+// Bid routes
 router.post('/', isAuthenticated, createBid);
 router.get('/:auctionId',isAuthenticated, getBidsForAuction);
 
