@@ -1,29 +1,42 @@
 import { Auction } from "../models/Auction.models.js";
 
+import {v2 as cloudinary} from 'cloudinary'
 
 const createAuction = async (req, res) => {
-    try {
-      const { crop, quantity, basePrice, description, endTime } = req.body;
-    //   const image = req.file ? req.file.filename : null;
-      const createdBy = req.user._id;
-  
-      const auction = new Auction({
-        crop,
-        quantity,
-        basePrice,
-        description,
-        endTime,
-        // image,
-        createdBy,
+  try {
+    const { crop, quantity, basePrice, description, endTime } = req.body;
+    const createdBy = req.user._id;
+
+    // Handle image upload (single image)
+    let imageUrl = null;
+
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        resource_type: 'image',
       });
-  
-      await auction.save();
-      res.status(201).json(auction);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Failed to create auction', error });
+      imageUrl = result.secure_url;
     }
-  };
+
+    const auction = new Auction({
+      crop,
+      quantity,
+      basePrice,
+      description,
+      endTime,
+      image: imageUrl,
+      createdBy,
+    });
+
+    await auction.save();
+    res.status(201).json({ success: true, data: auction });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Failed to create auction', error });
+  }
+};
+
+export default createAuction;
+
   
 const getAllAuctions = async (req, res) => {
   try {
@@ -62,4 +75,22 @@ const closeAuction = async (req, res) => {
   }
 };
 
-export {createAuction,getAllAuctions,closeAuction}
+const updateAuction = async (req, res) => {
+  const auction = await Auction.findById(req.params.id);
+  if (auction.createdBy.toString() !== req.user._id.toString()) {
+    return res.status(403).json({ message: "Forbidden" });
+  }
+  Object.assign(auction, req.body);
+  await auction.save();
+  res.json(auction);
+};
+
+const deleteAuction = async (req, res) => {
+  const auction = await Auction.findById(req.params.id);
+  if (auction.createdBy.toString() !== req.user._id.toString()) {
+    return res.status(403).json({ message: "Forbidden" });
+  }
+  await auction.remove();
+  res.json({ message: "Auction deleted" });
+};
+export {createAuction,getAllAuctions,closeAuction,getAuctionById,updateAuction,deleteAuction}

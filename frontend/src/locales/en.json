@@ -1,0 +1,123 @@
+{
+    "logo":"AgriAuction Hub",
+    "navbar":{
+  "hoome": "Home",
+  "auctions": "Auctions",
+  "dashboard": "Dashboard",
+  "createAuction": "Create Auction",
+  "history": "History",
+  "profile": "Profile",
+  "logout": "Logout",
+  "login": "Login",
+  "register": "Register"
+    },
+  "liveAuctionsHeading": "Live Crop Auctions",
+  "placeBidHeading": "Place Bid for {{crop}}",
+  "loadingAuctions": "Loading auctions...",
+  "noAuctions": "No live auctions found.",
+  "basePrice": "Base Price",
+  "endsAt": "Ends At",
+  "placeBidButton": "Place Bid",
+
+  
+  "home": {
+    "heroTitle": "Welcome to AgriAuction Hub",
+    "heroSubtitle": "Bid on agricultural crops in real-time, anywhere, anytime.",
+    "ctaBid": "Start Bidding Now",
+    "featuresTitle": "How It Works",
+    "featuresSubtitle": "Your gateway to real-time crop auctions.",
+    "feature1Title": "Create Auctions",
+    "feature1Desc": "Farmers can easily list crops for sale in a few steps.",
+    "feature2Title": "Live Bidding",
+    "feature2Desc": "Buyers place bids in real-time, ensuring competitive pricing.",
+    "feature3Title": "Transaction History",
+    "feature3Desc": "All auction results are recorded for transparency and trust.",
+    "ctaTitle": "Ready to join the auction?",
+    "ctaSubtitle": "Sign up now and start bidding on fresh crops from trusted farmers.",
+    "ctaJoin": "Join AgriAuction Hub"
+  },
+  "auction": {
+    "title": "Transaction History",
+    "subtitle": "View past and ongoing auction records.",
+    "completed": "✅ Completed",
+    "ongoing": "🔄 Ongoing",
+    "winningBid": "Winning Bid",
+    "currentBid": "Current Highest Bid",
+    "winner": "Winner",
+    "status": "Status",
+    "timestamp": "Timestamp",
+    "endsIn": "Ends In",
+    "wheat": "Fresh Wheat",
+    "tomatoes": "Organic Tomatoes",
+    "rice": "Premium Basmati Rice",
+    "corn": "Sweet Corn",
+    "potato": "Golden Potatoes"
+  },
+
+  "createAuction": {
+    "heading": "Create New Auction",
+    "crop": "Crop Name",
+    "cropPlaceholder": "e.g. Wheat, Rice",
+    "description": "Description",
+    "descriptionPlaceholder": "Describe your crop quality and details",
+    "basePrice": "Base Price (₹/quintal)",
+    "quantity": "Quantity (in quintals)",
+    "endTime": "Auction End Time",
+    "image": "Upload Crop Image",
+    "submit": "Submit Auction",
+    "success": "Auction created successfully!",
+    "error": "Failed to create auction.",
+    "loginError": "You must be logged in to create an auction."
+  },
+  "dashboard": {
+    "title": "Farmer Dashboard",
+    "totalAuctions": "Total Auctions",
+    "activeBids": "Active Bids",
+    "transactions": "Transactions",
+    "createAuction": "Create New Auction",
+    "createAuctionDesc": "Start selling your crops now by creating a new auction listing.",
+    "createButton": "Create Auction",
+    "history": "Auction History",
+    "historyDesc": "View details of past and completed crop auctions.",
+    "historyButton": "View History"
+  },
+  "login": {
+    "heading": "Login to AgriAuction Hub",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "button": "Login",
+    "loading": "Logging in...",
+    "noAccount": "Don't have an account?",
+    "register": "Register here",
+    "or": "or",
+    "success": "Login Successfully",
+    "failed": "Login failed. Please try again."
+  },
+  "register": {
+    "heading": "Create Account",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Your full name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Create a password",
+    "role": "Role",
+    "roles": {
+      "farmer": "Farmer",
+      "buyer": "Buyer",
+      "admin": "Admin"
+    },
+    "button": "Register",
+    "success": "Registration successful! Please check your email to verify your account.",
+    "failed": "Registration failed. Please try again.",
+    "haveAccount": "Already have an account?",
+    "loginHere": "Login here",
+    "imageAlt": "Register for Agriculture"
+  },
+  "footer": {
+    "copyright": "© {{year}} AgriAuction Hub. All Rights Reserved.",
+    "madeWithLove": "Made with ❤️ for farmers and buyers"
+  }
+}

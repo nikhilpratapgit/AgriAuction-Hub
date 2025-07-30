@@ -1,39 +1,32 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import BidInterface from "../components/BidInterface";
+import { useTranslation } from "react-i18next";
 
-import React, { useState } from "react";
-import wheat from '../assets/wheat.avif';
-import rice from '../assets/rice.avif';
-import tomatos from '../assets/tomatos.avif';
-import BidInterface from "../components/BidInterface"; // Import your bidding component
-
-const auctions = [
-  {
-    id: 1,
-    crop: "Wheat",
-    description: "Premium quality wheat grown in Punjab fields.",
-    image: wheat,
-    basePrice: "₹1600",
-    endTime: "2025-04-25 18:00",
-  },
-  {
-    id: 2,
-    crop: "Rice",
-    description: "Fresh Basmati rice from Haryana.",
-    image: rice,
-    basePrice: "₹2200",
-    endTime: "2025-04-24 16:00",
-  },
-  {
-    id: 3,
-    crop: "Tomatoes",
-    description: "Red ripe tomatoes freshly harvested.",
-    image: tomatos,
-    basePrice: "₹1000",
-    endTime: "2025-04-23 14:00",
-  },
-];
+const API_URL = import.meta.env.VITE_API_URL;
 
 const AuctionPage = () => {
+  const [auctions, setAuctions] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedAuction, setSelectedAuction] = useState(null);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const fetchAuctions = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/api/v1/auctions/get`, {
+          withCredentials: true,
+        });
+        setAuctions(res.data || []);
+      } catch (err) {
+        console.error("Error fetching auctions:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAuctions();
+  }, []);
 
   const handlePlaceBid = (auction) => {
     setSelectedAuction(auction);
@@ -42,23 +35,30 @@ const AuctionPage = () => {
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-10">
       <h1 className="text-3xl font-bold text-green-700 text-center mb-10">
-        {selectedAuction ? `Place Bid for ${selectedAuction.crop}` : "Live Crop Auctions"}
+        {selectedAuction
+          ? t("placeBidHeading", { crop: selectedAuction.crop })
+          : t("liveAuctionsHeading")}
       </h1>
 
       {selectedAuction ? (
         <div className="max-w-2xl mx-auto">
           <BidInterface
+            auctionId={selectedAuction._id}
             cropName={selectedAuction.crop}
             currentBid={selectedAuction.basePrice}
             auctionEndTime={selectedAuction.endTime}
             onBack={() => setSelectedAuction(null)}
           />
         </div>
+      ) : loading ? (
+        <p className="text-center text-gray-500">{t("loadingAuctions")}</p>
+      ) : auctions.length === 0 ? (
+        <p className="text-center text-red-500">{t("noAuctions")}</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {auctions.map((auction) => (
             <div
-              key={auction.id}
+              key={auction._id}
               className="bg-white rounded-lg shadow-md hover:shadow-lg transition overflow-hidden"
             >
               <img
@@ -72,18 +72,19 @@ const AuctionPage = () => {
 
                 <div className="mt-4 space-y-1 text-sm">
                   <p>
-                    <span className="font-semibold">Base Price:</span> {auction.basePrice}/quintal
+                    <span className="font-semibold">{t("basePrice")}:</span> ₹{auction.basePrice}/quintal
                   </p>
                   <p>
-                    <span className="font-semibold">Ends At:</span> {auction.endTime}
+                    <span className="font-semibold">{t("endsAt")}:</span>{" "}
+                    {new Date(auction.endTime).toLocaleString()}
                   </p>
                 </div>
 
                 <button
                   onClick={() => handlePlaceBid(auction)}
-                  className="mt-4 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+                  className="mt-4 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition dark:bg-green-700 dark:hover:bg-green-600"
                 >
-                  Place Bid
+                  {t("placeBidButton")}
                 </button>
               </div>
             </div>
@@ -95,3 +96,4 @@ const AuctionPage = () => {
 };
 
 export default AuctionPage;
+
